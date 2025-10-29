@@ -20,8 +20,8 @@ const Navigation = () => {
             <BookOpen className="w-8 h-8 text-indigo-600" />
             <div className='flex flex-row justify-start items-center'>
               <h1 className="text-xl text-left font-bold bg-gradient-to-tr from-pink-400 to-yellow-400 bg-clip-text text-transparent">Assignment Hub</h1>
-              <p className="text-xl translate-y-3 translate-x-70 text-white">
-                {currentUser?.role === 'admin' ? 'Professor Dashboard' : 'Student Dashboard'}
+              <p className="text-xl translate-y-3 translate-x-70 bg-gradient-to-tr from-pink-400 to-yellow-400 bg-clip-text text-transparent">
+                {currentUser?.role === 'admin' ? `Professor's Dashboard` : `Student's Dashboard`}
               </p>
             </div>
           </div>
@@ -44,7 +44,7 @@ const Navigation = () => {
                   onLetterAnimationComplete={handleAnimationComplete}
                 />
               </p>
-              <p className="text-lg text-white">{currentUser?.email}</p>
+              <p className="text-s text-white">{currentUser?.email}</p>
             </div>
             <button
               onClick={logout}
