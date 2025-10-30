@@ -1,18 +1,16 @@
 import React, { useRef, useEffect, useState} from 'react';
 import { BookOpen } from 'lucide-react';
 import { useApp } from '../../context/AppContext';
-import Navigation from '../Navigation';
+import Navigation from '../Navigationbar/Navigation';
 import StudentAssignmentCard from './StudentAssingmentCard';
 import InteractiveBg from '../../animations/Interactivebg';
 import { gsap } from 'gsap';
 
 
-// Constants
 const DEFAULT_SPOTLIGHT_RADIUS = 300;
 const DEFAULT_GLOW_COLOR = '132, 0, 255'; // Purple glow
 const MOBILE_BREAKPOINT = 768;
 
-// Helper functions for spotlight
 const calculateSpotlightValues = (radius: number) => ({
   proximity: radius * 0.5,
   fadeDistance: radius * 0.75
@@ -29,7 +27,6 @@ const updateCardGlowProperties = (card: HTMLElement, mouseX: number, mouseY: num
   card.style.setProperty('--glow-radius', `${radius}px`);
 };
 
-// Mobile detection hook
 const useMobileDetection = () => {
   const [isMobile, setIsMobile] = useState(false);
 
@@ -192,16 +189,25 @@ const StudentDashboard = () => {
   const glowColor = DEFAULT_GLOW_COLOR;
   const spotlightRadius = DEFAULT_SPOTLIGHT_RADIUS;
 
-  const studentSubmissions = data.submissions.filter(s => s.studentId === currentUser.id);
+  // Get all current assignments
   const assignments = data.assignments;
   
-  const submittedCount = studentSubmissions.filter(s => s.submitted).length;
+  // Get assignment IDs that actually exist
+  const validAssignmentIds = assignments.map((a: any) => a.id);
+  
+  // Filter student submissions to only include submissions for existing assignments
+  const studentSubmissions = data.submissions.filter(
+    (s: any) => s.studentId === currentUser.id && validAssignmentIds.includes(s.assignmentId)
+  );
+  
+  // Calculate counts based on valid submissions only
+  const submittedCount = studentSubmissions.filter((s: any) => s.submitted).length;
   const totalCount = assignments.length;
   const progressPercentage = totalCount > 0 ? (submittedCount / totalCount) * 100 : 0;
 
   return (
-  
-    <div className="h-screen w-screen overflow-x-hidden">
+
+    <div className="fixed top-16 left-0 w-screen h-[calc(100vh-4rem)] overflow-y-auto">
       <style>
         {`
           .bento-section {
@@ -257,7 +263,7 @@ const StudentDashboard = () => {
       <div className="bento-section max-w-screen mx-auto px-4 sm:px-6 lg:px-8 py-8">
         <div className="mb-8 ">
           <h2 className="text-2xl font-bold text-white mb-2 ">My Assignments</h2>
-          <p className="text-gray-600">Track your assignment submissions and deadlines</p>
+          <p className="text-white">Track your assignment submissions and deadlines</p>
         </div>
         <div className="card card--border-glow rounded-xl shadow-sm border border-gray-200 p-6 mb-8 relative transition-all duration-300 ease-in-out" style={{color: 'black', opacity: '0.8'}}>
           <div className="flex flex-row items-center justify-between mb-4">
@@ -276,8 +282,8 @@ const StudentDashboard = () => {
           </div>
         </div>
         <div ref={gridRef} className="grid grid-cols-1 md:grid-cols-2 gap-6 ">
-          {assignments.map(assignment => {
-            const submission = studentSubmissions.find(s => s.assignmentId === assignment.id);
+          {assignments.map((assignment: any) => {
+            const submission = studentSubmissions.find((s: any) => s.assignmentId === assignment.id);
             return (
               <div
                 key={assignment.id}

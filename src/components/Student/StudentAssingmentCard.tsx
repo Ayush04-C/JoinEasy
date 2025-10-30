@@ -3,10 +3,6 @@ import { CheckCircle, Clock, ExternalLink, XCircle } from 'lucide-react';
 import { useApp } from '../../context/AppContext';
 import FadeContent from '../../animations/FadeContent'
 
-  
-
-
-
 // Assignment Card for Students
 const StudentAssignmentCard = ({ assignment, submission }) => {
   const { updateSubmission, currentUser } = useApp();
@@ -95,7 +91,7 @@ const StudentAssignmentCard = ({ assignment, submission }) => {
               </button>
               <button
                 onClick={() => setShowConfirmation(false)}
-                className="flex-1 bg-gray-200 text-gray-700 py-2 rounded-lg font-medium hover:bg-gray-300"
+                className="flex-1 bg-black text-black py-2 rounded-lg font-medium hover:bg-gray-300"
                 >
                 Cancel
               </button>

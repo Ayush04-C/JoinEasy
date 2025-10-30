@@ -1,6 +1,18 @@
 import { createContext, useContext, useState, useEffect } from 'react';
 
-const AppContext = createContext();
+interface AppContextType {
+  data: any;
+  setData: React.Dispatch<React.SetStateAction<any>>;
+  currentUser: any;
+  login: (email: string, password: string) => boolean;
+  logout: () => void;
+  addAssignment: (assignment: any) => void;
+  updateSubmission: (assignmentId: string, studentId: string, submitted: boolean) => void;
+  showMobileMenu: boolean;
+  setShowMobileMenu: React.Dispatch<React.SetStateAction<boolean>>;
+}
+
+const AppContext = createContext<AppContextType | undefined>(undefined);
 
 const useApp = () => {
   const context = useContext(AppContext);
@@ -8,10 +20,9 @@ const useApp = () => {
   return context;
 };
 
-// Mock data initialization
 const initializeMockData = () => {
   if (typeof window === 'undefined') {
-    return null; // Return null or default data during SSR
+    return null; 
   }
 
   const existingData = localStorage.getItem('assignmentSystemData');
@@ -55,18 +66,35 @@ const initializeMockData = () => {
   return JSON.parse(existingData);
 };
 
-// App Provider Component
-const AppProvider = ({ children }) => {
-  const [data, setData] = useState(initializeMockData());
-  const [currentUser, setCurrentUser] = useState(null);
-  const [showMobileMenu, setShowMobileMenu] = useState(false);
+const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
+  const [data, setData] = useState<any>(initializeMockData());
+  const [currentUser, setCurrentUser] = useState<any>(null);
+  const [showMobileMenu, setShowMobileMenu] = useState<boolean>(false);
 
   useEffect(() => {
     localStorage.setItem('assignmentSystemData', JSON.stringify(data));
   }, [data]);
 
-  const login = (email, password) => {
-    const user = data.users.find(u => u.email === email && u.password === password);
+  // Clean up orphaned submissions on mount
+  useEffect(() => {
+    if (data) {
+      const validAssignmentIds = data.assignments.map((a: any) => a.id);
+      const cleanedSubmissions = data.submissions.filter((s: any) => 
+        validAssignmentIds.includes(s.assignmentId)
+      );
+      
+      // Only update if there are orphaned submissions
+      if (cleanedSubmissions.length !== data.submissions.length) {
+        setData((prev: any) => ({
+          ...prev,
+          submissions: cleanedSubmissions
+        }));
+      }
+    }
+  }, []); // Run only once on mount
+
+  const login = (email: string, password: string): boolean => {
+    const user = data.users.find((u: any) => u.email === email && u.password === password);
     if (user) {
       setCurrentUser(user);
       return true;
@@ -74,37 +102,47 @@ const AppProvider = ({ children }) => {
     return false;
   };
 
-  const logout = () => {
+  const logout = (): void => {
     setCurrentUser(null);
     setShowMobileMenu(false);
   };
 
-  const addAssignment = (assignment) => {
+  const addAssignment = (assignment: any): void => {
     const newAssignment = {
       ...assignment,
       id: `assign${Date.now()}`,
-      createdAt: new Date().toISOString().split('T')[0]
+      createdAt: new Date().toISOString().split('T')[0],
     };
-    setData(prev => ({
+    setData((prev: any) => ({
       ...prev,
-      assignments: [...prev.assignments, newAssignment]
+      assignments: [...prev.assignments, newAssignment],
     }));
   };
 
-  const updateSubmission = (assignmentId, studentId, submitted) => {
-    setData(prev => {
+  const updateSubmission = (
+    assignmentId: string,
+    studentId: string,
+    submitted: boolean
+  ): void => {
+    setData((prev: any) => {
       const existingSubmission = prev.submissions.find(
-        s => s.assignmentId === assignmentId && s.studentId === studentId
+        (s: any) => s.assignmentId === assignmentId && s.studentId === studentId
       );
 
       if (existingSubmission) {
         return {
           ...prev,
-          submissions: prev.submissions.map(s =>
+          submissions: prev.submissions.map((s: any) =>
             s.assignmentId === assignmentId && s.studentId === studentId
-              ? { ...s, submitted, submittedAt: submitted ? new Date().toISOString().split('T')[0] : null }
+              ? {
+                  ...s,
+                  submitted,
+                  submittedAt: submitted
+                    ? new Date().toISOString().split('T')[0]
+                    : null,
+                }
               : s
-          )
+          ),
         };
       } else {
         return {
@@ -116,25 +154,30 @@ const AppProvider = ({ children }) => {
               assignmentId,
               studentId,
               submitted,
-              submittedAt: submitted ? new Date().toISOString().split('T')[0] : null
-            }
-          ]
+              submittedAt: submitted
+                ? new Date().toISOString().split('T')[0]
+                : null,
+            },
+          ],
         };
       }
     });
   };
 
   return (
-    <AppContext.Provider value={{
-      data,
-      currentUser,
-      login,
-      logout,
-      addAssignment,
-      updateSubmission,
-      showMobileMenu,
-      setShowMobileMenu
-    }}>
+    <AppContext.Provider
+      value={{
+        data,
+        setData,
+        currentUser,
+        login,
+        logout,
+        addAssignment,
+        updateSubmission,
+        showMobileMenu,
+        setShowMobileMenu,
+      }}
+    >
       {children}
     </AppContext.Provider>
   );

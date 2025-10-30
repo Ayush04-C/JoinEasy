@@ -13,25 +13,24 @@ const Navigation = () => {
   const { currentUser, logout, showMobileMenu, setShowMobileMenu } = useApp();
 
   return (
-    <nav className=" shadow-sm text-left rounded-full" style={{background:' linear-gradient(135deg, #230944ff 0%, #070215ff 100%)'}}>
+    <nav className=" shadow-sm text-left fixed rounded-full top-0 w-full z-50 overflow-visible" style={{background:' linear-gradient(135deg, #230944ff 0%, #13062dff 100%)'}}>
       <div className=" mx-auto px-4 text-left sm:px-6 lg:px-8">
-        <div className="flex justify-between items-center h-20">
+        <div className="flex justify-between items-center h-20 overflow-visible">
           <div className="flex justify-start items-center space-x-3">
             <BookOpen className="w-8 h-8 text-indigo-600" />
-            <div className='flex flex-row justify-start items-center'>
-              <h1 className="text-xl text-left font-bold bg-gradient-to-tr from-pink-400 to-yellow-400 bg-clip-text text-transparent">Assignment Hub</h1>
-              <p className="text-xl translate-y-3 translate-x-70 bg-gradient-to-tr from-pink-400 to-yellow-400 bg-clip-text text-transparent">
+            <div className='flex flex-row justify-start items-center overflow-visible'>
+              <h1 className="text-xl text-left font-bold bg-gradient-to-tr from-pink-400 to-yellow-400 bg-clip-text text-transparent overflow-visible py-2">Assignment Hub</h1>
+              <p className="text-xl absolute left-1/2 transform-translate-x-1/2 bg-gradient-to-tr from-pink-400 to-yellow-400 bg-clip-text text-transparent overflow-visible py-1">
                 {currentUser?.role === 'admin' ? `Professor's Dashboard` : `Student's Dashboard`}
               </p>
             </div>
           </div>
-
           <div className="hidden md:flex items-center space-x-4">
             <div className="text-right">
               <p className="text-sm font-medium text-white">
                 <SplitText
                   text={`Hello, ${currentUser.role == 'admin' ? currentUser?.name : currentUser?.name.split(' ')[0]} `}
-                  className="text-2xl font-semibold text-center"
+                  className="text-2xl font-semibold text-[#13062dff]text-center"
                   delay={100}
                   duration={0.6}
                   ease="power3.out"
