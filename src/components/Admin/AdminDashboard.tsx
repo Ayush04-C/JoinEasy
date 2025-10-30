@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { BookOpen, ExternalLink, Plus, Users, CheckCircle, XCircle } from 'lucide-react';
 import { useApp } from '../../context/AppContext';
-import Navigation from '../Navigation';
+import Navigation from '../Navigationbar/Navigation';
 import CreateAssignmentModal from './AssingmentModal';
 import InteractiveBg from '../../animations/Interactivebg';
 
@@ -43,14 +43,14 @@ const AdminDashboard = () => {
               const progressPercentage = totalStudents > 0 ? (submittedCount / totalStudents) * 100 : 0;
 
               return (
-                <div key={assignment.id} className="bg-white rounded-xl shadow-sm border border-gray-200 p-6">
+                <div key={assignment.id} className="backdrop-blur-sm rounded-xl shadow-sm border border-gray-200 p-6">
                   <div className="flex flex-col lg:flex-row lg:items-start lg:justify-between mb-6 space-y-4 lg:space-y-0">
                     <div className="flex-1">
-                      <h3 className="text-xl font-semibold text-gray-900 mb-2">{assignment.title}</h3>
-                      <p className="text-sm text-gray-600 mb-3">{assignment.description}</p>
+                      <h3 className="text-xl font-semibold text-white mb-2">{assignment.title}</h3>
+                      <p className="text-sm text-white mb-3">{assignment.description}</p>
                       <div className="flex flex-wrap gap-4 text-sm">
                         <span className="text-gray-500">
-                          Due: <span className="font-medium text-gray-900">{new Date(assignment.dueDate).toLocaleDateString()}</span>
+                          Due: <span className="font-medium text-white">{new Date(assignment.dueDate).toLocaleDateString()}</span>
                         </span>
                         {assignment.driveLink && (
                           <a
@@ -73,7 +73,7 @@ const AdminDashboard = () => {
 
                   <div className="mb-6">
                     <div className="flex items-center justify-between mb-2">
-                      <span className="text-sm font-medium text-gray-700">Overall Submission Rate</span>
+                      <span className="text-sm font-medium text-white">Overall Submission Rate</span>
                       <span className="text-sm font-semibold text-indigo-600">{Math.round(progressPercentage)}%</span>
                     </div>
                     <div className="w-full bg-gray-200 rounded-full h-3 overflow-hidden">
@@ -84,17 +84,17 @@ const AdminDashboard = () => {
                     </div>
                   </div>
 
-                  <div className="space-y-3">
-                    <h4 className="text-sm font-semibold text-gray-700 mb-3">Student Progress</h4>
+                  <div className="space-y-3 backdrop-blur-sm p-4 rounded-lg border border-gray-200">
+                    <h4 className="text-sm font-semibold text-white mb-3">Student Progress</h4>
                     {students.map(student => {
                       const submission = assignmentSubmissions.find(s => s.studentId === student.id);
                       const isSubmitted = submission?.submitted || false;
 
                       return (
-                        <div key={student.id} className="flex items-center space-x-4 p-3 bg-gray-50 rounded-lg">
+                        <div key={student.id} className="flex items-center space-x-4 p-3 bg-gray-50 rounded-lg" style={{background:' linear-gradient(135deg, #230944ff 0%, #070215ff 100%)'}}>
                           <div className="flex-1">
-                            <p className="text-sm font-medium text-gray-900">{student.name}</p>
-                            <p className="text-xs text-gray-500">{student.email}</p>
+                            <p className="text-sm font-medium text-white">{student.name}</p>
+                            <p className="text-xs text-white">{student.email}</p>
                           </div>
                           <div className="flex items-center space-x-2">
                             {isSubmitted ? (

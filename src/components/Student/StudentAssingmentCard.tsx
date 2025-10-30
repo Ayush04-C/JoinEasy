@@ -27,7 +27,7 @@ const StudentAssignmentCard = ({ assignment, submission }) => {
 
   return (
   <FadeContent blur={false} duration={1000} easing="ease-out" initialOpacity={0}>
-    <div className="rounded-xl shadow-sm border border-gray-200 p-6 hover:shadow-md transition-shadow backdrop-blur">
+    <div className="rounded-xl shadow-lg border-1 border-white-500 p-6 hover:shadow-md transition-shadow backdrop-blur">
       <div className="flex items-start justify-between mb-4">
         <div className="flex-1">
           <h3 className="text-lg font-semibold text-white mb-2">{assignment.title}</h3>

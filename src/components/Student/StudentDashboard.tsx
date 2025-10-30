@@ -167,7 +167,6 @@ const GlobalSpotlight: React.FC<{
       }
     };
     
-    // We attach to the bento-section to track mouse movements
     const section = gridRef.current.closest('.bento-section');
     section?.addEventListener('mousemove', handleMouseMove);
     section?.addEventListener('mouseleave', handleMouseLeave);
@@ -186,13 +185,12 @@ const GlobalSpotlight: React.FC<{
 const StudentDashboard = () => {
   const { data, currentUser } = useApp();
   
-  // --- Added for glow effect ---
+
   const gridRef = useRef<HTMLDivElement>(null);
   const isMobile = useMobileDetection();
   const shouldDisableAnimations = isMobile;
   const glowColor = DEFAULT_GLOW_COLOR;
   const spotlightRadius = DEFAULT_SPOTLIGHT_RADIUS;
-  // ---
 
   const studentSubmissions = data.submissions.filter(s => s.studentId === currentUser.id);
   const assignments = data.assignments;
@@ -203,7 +201,7 @@ const StudentDashboard = () => {
 
   return (
   
-    <div className="min-h-screen w-screen">
+    <div className="h-screen w-screen overflow-x-hidden">
       <style>
         {`
           .bento-section {

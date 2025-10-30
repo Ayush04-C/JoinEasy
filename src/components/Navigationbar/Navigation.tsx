@@ -1,6 +1,6 @@
 import { BookOpen, LogOut, Menu, X } from 'lucide-react';
-import { useApp } from '../context/AppContext';
-import SplitText from "../animations/SplitText";
+import { useApp } from '../../context/AppContext';
+import SplitText from "../../animations/SplitText";
 
 const handleAnimationComplete = () => {
   console.log('All letters have animated!');

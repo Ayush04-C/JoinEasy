@@ -22,18 +22,18 @@ const CreateAssignmentModal = ({ onClose }) => {
   };
 
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4 z-50">
-      <div className="bg-white rounded-xl p-6 max-w-lg w-full max-h-[90vh] overflow-y-auto">
+    <div className="fixed inset-0 bg-black/50 backdrop-blur-sm flex items-center justify-center p-4 z-50">
+      <div className="bg-white rounded-xl p-6 max-w-lg w-full max-h-[90vh] overflow-y-auto shadow-lg">
         <h3 className="text-xl font-bold text-gray-900 mb-4">Create New Assignment</h3>
-        
+
         <div className="space-y-4">
           <div>
-            <label className="block text-sm font-medium text-gray-700 mb-2">Title</label>
+            <label className="block text-sm font-medium text-black mb-2">Title</label>
             <input
               type="text"
               value={formData.title}
               onChange={(e) => setFormData({ ...formData, title: e.target.value })}
-              className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500"
+              className="w-full px-4 py-2 border text-black border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500"
             />
           </div>
 
@@ -42,7 +42,7 @@ const CreateAssignmentModal = ({ onClose }) => {
             <textarea
               value={formData.description}
               onChange={(e) => setFormData({ ...formData, description: e.target.value })}
-              className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500"
+              className="w-full px-4 py-2 border text-black border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500"
               rows="3"
             />
           </div>
@@ -53,7 +53,7 @@ const CreateAssignmentModal = ({ onClose }) => {
               type="date"
               value={formData.dueDate}
               onChange={(e) => setFormData({ ...formData, dueDate: e.target.value })}
-              className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500"
+              className="w-full px-4 py-2 border text-black border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500"
             />
           </div>
 
@@ -63,7 +63,7 @@ const CreateAssignmentModal = ({ onClose }) => {
               type="url"
               value={formData.driveLink}
               onChange={(e) => setFormData({ ...formData, driveLink: e.target.value })}
-              className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500"
+              className="w-full px-4 py-2 border text-black border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500"
               placeholder="https://drive.google.com/..."
             />
           </div>
@@ -77,7 +77,7 @@ const CreateAssignmentModal = ({ onClose }) => {
             </button>
             <button
               onClick={onClose}
-              className="flex-1 bg-gray-200 text-gray-700 py-2 rounded-lg font-medium hover:bg-gray-300"
+              className="flex-1 bg-gray-300 text-white py-2 rounded-lg font-medium hover:bg-gray-400"
             >
               Cancel
             </button>
