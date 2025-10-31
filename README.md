@@ -1,75 +1,81 @@
-# React + TypeScript + Vite
+# Assingment Hub
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A unified platform for professors and students — where students can seamlessly view and submit their assignments, and professors can efficiently track student progress. Designed to simplify and enhance the academic workflow for both students and educators.
 
-Currently, two official plugins are available:
+# Component Descriptions
+- Login Component (Login.tsx): Handles user authentication with predefined demo credentials for students and professors.
+- App Context (AppContext.tsx): Manages global application state including user authentication, assignment data, and submission tracking using localStorage for persistence.
+- Student Dashboard (StudentDashboard.tsx): Provides students with an overview of their assignments, submission status, and overall progress tracking.
+- Admin Dashboard (AdminDashboard.tsx): Enables professors to create, monitor, and delete assignments along with tracking student submissions.
+- Animation Components: Custom animation utilities that enhance the user interface with interactive visual effects.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+<br>
 
-## React Compiler
+<img width="1722" height="800" alt="image" src="https://github.com/user-attachments/assets/07656216-b42d-481d-9812-2e7ec3cfda33" />
 
-The React Compiler is enabled on this template. See [this documentation](https://react.dev/learn/react-compiler) for more information.
+<br><br>
 
-Note: This will impact Vite dev & build performances.
 
-## Expanding the ESLint configuration
+# Detailed User Flows
+- Initial Login Process:
+  - Users access the application and are presented with the Login screen
+  - Users enter credentials (demo credentials provided):
+    - Student: alice@student.edu / student123
+    - Professor: emily@prof.edu / admin123
+    - Based on the user role, they are directed to the appropriate dashboard
+&nbsp;
+- Student User Flow:
+  - View all assigned assignments in card format
+  - Track overall progress with visual indicators
+  - See submission status for each assignment
+  - Access assignment details and external links
+&nbsp;
+- Professor/Instructor User Flow:
+  - Create new assignments through a modal form
+  - Monitor student progress across all assignments
+  - View submission statistics and individual student status
+  - Delete assignments with confirmation dialog
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+<br>
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+# Technical Stack Documentation
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+- Core Technologies
+  - React 19.1.1: Frontend library for building user interfaces
+  - TypeScript ~5.9.3: Typed superset of JavaScript for enhanced development experience
+  - Vite 7.1.7: Fast build tool and development server
+- UI Libraries and Styling
+  - Tailwind CSS 4.1.16: Utility-first CSS framework for rapid UI development
+  - Lucide React 0.548.0: Icon library with consistent, scalable vector icons
+  - GSAP 3.13.0: Animation library for creating high-performance animations
+- State Management
+  - React Context API: Built-in state management solution for sharing data across components
+  - LocalStorage: Client-side data persistence for mock assignment system
+- Development Tools
+  - ESLint 9.36.0: Code quality and consistency enforcement
+  - PostCSS 8.5.6: CSS processing and transformation tool
+  - Autoprefixer 10.4.21: Vendor prefixing for cross-browser compatibility
+- Build and Deployment
+  - Vite: Fast build tool with Hot Module Replacement (HMR)
+  - TypeScript Compiler: Type checking and transpilation to JavaScript
+- Key Features
+  - Responsive Design: Mobile-friendly interface using Tailwind's responsive utilities
+  - Interactive Animations: Custom GSAP-based animations for enhanced UX
+  - Role-Based Access Control: Different views and permissions for students vs. professors
+  - Persistent Data Storage: Mock data system using localStorage
+  - Visual Progress Tracking: Progress bars and statistics visualization
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+# Preview
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+- Login Page
+&nbsp;&nbsp;&nbsp;&nbsp;<img width="1919" height="868" alt="image" src="https://github.com/user-attachments/assets/9ab91f84-dcbb-4607-b242-0ee16842e1a6" />
+<br>
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+- Student Dashboard
+&nbsp<img width="1919" height="873" alt="image" src="https://github.com/user-attachments/assets/4ba981f0-a4db-4099-800b-e8c35e651d0d" />
+<br>
+
+- Professors DashBoard
+&nbsp;<img width="1919" height="870" alt="image" src="https://github.com/user-attachments/assets/c9bea411-6fe3-4126-8e5e-18ad0a60c41d" />
+
