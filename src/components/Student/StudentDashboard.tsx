@@ -281,7 +281,7 @@ const StudentDashboard = () => {
             <span>{totalCount - submittedCount} pending</span>
           </div>
         </div>
-        <div ref={gridRef} className="grid grid-cols-1 md:grid-cols-2 gap-6 ">
+        <div ref={gridRef} className="grid grid-cols-1 md:grid-cols-2 gap-5 ">
           {assignments.map((assignment: any) => {
             const submission = studentSubmissions.find((s: any) => s.assignmentId === assignment.id);
             return (

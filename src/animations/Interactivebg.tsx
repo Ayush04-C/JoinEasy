@@ -35,7 +35,7 @@ export default function InteractiveBg() {
         x: Math.random() * window.innerWidth,
         y: Math.random() * window.innerHeight,
         size: Math.random() * 50 + 20,
-        opacity: Math.random() * 0.4 + 0.3,
+        opacity: 0.1,
         animationDuration: Math.random() * 5 + 5,
         animationDelay: Math.random() * 5,
         depth: Math.random() * 0.4 + 0.1,
