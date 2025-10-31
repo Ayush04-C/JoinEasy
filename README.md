@@ -13,7 +13,7 @@ A unified platform for professors and students — where students can seamlessly
 
 <img width="1722" height="800" alt="image" src="https://github.com/user-attachments/assets/07656216-b42d-481d-9812-2e7ec3cfda33" />
 
-<br><br>
+<br>
 
 
 # Detailed User Flows
@@ -73,7 +73,7 @@ A unified platform for professors and students — where students can seamlessly
 <br>
 
 - Student Dashboard
-&nbsp<img width="1919" height="873" alt="image" src="https://github.com/user-attachments/assets/4ba981f0-a4db-4099-800b-e8c35e651d0d" />
+&nbsp;<img width="1919" height="873" alt="image" src="https://github.com/user-attachments/assets/4ba981f0-a4db-4099-800b-e8c35e651d0d" />
 <br>
 
 - Professors DashBoard
