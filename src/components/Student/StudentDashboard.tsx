@@ -87,7 +87,7 @@ const GlobalSpotlight: React.FC<{
     const handleMouseMove = (e: MouseEvent) => {
       if (!spotlightRef.current || !gridRef.current) return;
 
-      // Use the gridRef's parent section as the boundary
+      
       const section = gridRef.current.closest('.bento-section');
       const rect = section?.getBoundingClientRect();
       const mouseInside =
@@ -190,18 +190,14 @@ const StudentDashboard = () => {
   const glowColor = DEFAULT_GLOW_COLOR;
   const spotlightRadius = DEFAULT_SPOTLIGHT_RADIUS;
 
-  // Get all current assignments
   const assignments = data.assignments;
-  
-  // Get assignment IDs that actually exist
+
   const validAssignmentIds = assignments.map((a: any) => a.id);
-  
-  // Filter student submissions to only include submissions for existing assignments
+
   const studentSubmissions = data.submissions.filter(
     (s: any) => s.studentId === currentUser.id && validAssignmentIds.includes(s.assignmentId)
   );
-  
-  // Calculate counts based on valid submissions only
+
   const submittedCount = studentSubmissions.filter((s: any) => s.submitted).length;
   const totalCount = assignments.length;
   const progressPercentage = totalCount > 0 ? (submittedCount / totalCount) * 100 : 0;

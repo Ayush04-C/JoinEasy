@@ -3,7 +3,6 @@ import { CheckCircle, Clock, ExternalLink, XCircle } from 'lucide-react';
 import { useApp } from '../../context/AppContext';
 import FadeContent from '../../animations/FadeContent'
 
-// Assignment Card for Students
 const StudentAssignmentCard = ({ assignment, submission }) => {
   const { updateSubmission, currentUser } = useApp();
   const [showConfirmation, setShowConfirmation] = useState(false);
