@@ -258,13 +258,13 @@ const StudentDashboard = () => {
       
      
       <div className="bento-section max-w-screen mx-auto px-4 sm:px-6 lg:px-8 py-8">
-        <ScrollFadeIn direction="up" duration={600} delay={100}>
+        <ScrollFadeIn direction="up" duration={600} delay={0} threshold={0.05}>
           <div className="mb-8 ">
             <h2 className="text-2xl font-bold text-white mb-2 ">My Assignments</h2>
             <p className="text-white">Track your assignment submissions and deadlines</p>
           </div>
         </ScrollFadeIn>
-        <ScrollFadeIn direction="up" duration={700} delay={200}>
+        <ScrollFadeIn direction="up" duration={700} delay={100} threshold={0.05}>
           <div className="card card--border-glow rounded-xl shadow-sm border border-gray-200 p-6 mb-8 relative transition-all duration-300 ease-in-out" style={{color: 'black', opacity: '0.8'}}>
             <div className="flex flex-row items-center justify-between mb-4">
               <h3 className="text-lg font-semibold text-white">Overall Progress</h3>
@@ -283,15 +283,16 @@ const StudentDashboard = () => {
           </div>
         </ScrollFadeIn>
         <div ref={gridRef} className="grid grid-cols-1 md:grid-cols-2 gap-5 ">
-          {assignments.map((assignment: any, index: number) => {
+          {assignments.map((assignment: any) => {
             const submission = studentSubmissions.find((s: any) => s.assignmentId === assignment.id);
             return (
               <ScrollFadeIn
                 key={assignment.id}
                 direction="up"
-                duration={700}
-                delay={300 + index * 100}
-                distance={40}
+                duration={600}
+                delay={0}
+                distance={30}
+                threshold={0.1}
               >
                 <div
                   className="card card--border-glow rounded-xl relative overflow-hidden transition-all duration-300 ease-in-out transition-transform duration-300 hover:scale-102"
@@ -306,7 +307,7 @@ const StudentDashboard = () => {
           })}
         </div>
         {assignments.length === 0 && (
-          <ScrollFadeIn direction="up" duration={700} delay={300}>
+          <ScrollFadeIn direction="up" duration={700} delay={0} threshold={0.1}>
             <div className="text-center py-12">
               <BookOpen className="w-16 h-16 text-gray-400 mx-auto mb-4" />
               <p className="text-gray-600">No assignments available yet</p>

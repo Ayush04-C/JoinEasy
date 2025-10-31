@@ -45,7 +45,10 @@ const ScrollFadeIn: React.FC<ScrollFadeInProps> = ({
           setIsVisible(false);
         }
       },
-      { threshold }
+      { 
+        threshold: threshold,
+        rootMargin: '0px 0px -50px 0px' // Trigger animation 50px before element enters viewport
+      }
     );
 
     observer.observe(element);
