@@ -4,6 +4,7 @@ import { useApp } from '../../context/AppContext';
 import Navigation from '../Navigationbar/Navigation';
 import CreateAssignmentModal from './AssingmentModal';
 import InteractiveBg from '../../animations/Interactivebg';
+import ScrollFadeIn from '../../animations/ScrollFadeIn';
 
 interface Assignment {
   id: string;
@@ -69,29 +70,38 @@ const AdminDashboard = () => {
           </div>
         )}
 
-        <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between mb-8 space-y-4 sm:space-y-0">
-          <div>
-            <h2 className="text-2xl font-bold text-white mb-2">Assignment Management</h2>
-            <p className="text-white">Track student submissions across all assignments</p>
+        <ScrollFadeIn direction="up" duration={600} delay={100}>
+          <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between mb-8 space-y-4 sm:space-y-0">
+            <div>
+              <h2 className="text-2xl font-bold text-white mb-2">Assignment Management</h2>
+              <p className="text-white">Track student submissions across all assignments</p>
+            </div>
+            <button
+              onClick={() => setShowCreateModal(true)}
+              className="flex items-center justify-center space-x-2 bg-indigo-600 text-white px-6 py-3 rounded-lg font-medium hover:bg-indigo-700 transition-colors"
+            >
+              <Plus className="w-5 h-5" />
+              <span>Create Assignment</span>
+            </button>
           </div>
-          <button
-            onClick={() => setShowCreateModal(true)}
-            className="flex items-center justify-center space-x-2 bg-indigo-600 text-white px-6 py-3 rounded-lg font-medium hover:bg-indigo-700 transition-colors"
-          >
-            <Plus className="w-5 h-5" />
-            <span>Create Assignment</span>
-          </button>
-        </div>
+        </ScrollFadeIn>
 
         <div className="space-y-6">
-            {myAssignments.map((assignment: Assignment) => {
+            {myAssignments.map((assignment: Assignment, index: number) => {
               const assignmentSubmissions = data.submissions.filter((s: Submission) => s.assignmentId === assignment.id);
               const submittedCount = assignmentSubmissions.filter((s: Submission) => s.submitted).length;
               const totalStudents = students.length;
               const progressPercentage = totalStudents > 0 ? (submittedCount / totalStudents) * 100 : 0;
 
               return (
-                <div key={assignment.id} className="backdrop-blur-sm rounded-xl shadow-sm border border-gray-200 p-6">
+                <ScrollFadeIn 
+                  key={assignment.id} 
+                  direction="up" 
+                  duration={700} 
+                  delay={index * 150}
+                  distance={40}
+                >
+                  <div className="backdrop-blur-sm rounded-xl shadow-sm border border-gray-200 p-6">
                   <div className="flex flex-col lg:flex-row lg:items-start lg:justify-between mb-6 space-y-4 lg:space-y-0">
                     <div className="flex-1">
                       <h3 className="text-xl font-semibold text-white mb-2">{assignment.title}</h3>
@@ -171,22 +181,25 @@ const AdminDashboard = () => {
                     Delete Assignment
                   </button>
                 </div>
+                </ScrollFadeIn>
               );
             })}
         </div>
 
         {myAssignments.length === 0 && (
-          <div className="text-center py-12 bg-white rounded-xl border border-gray-200">
-            <BookOpen className="w-16 h-16 text-gray-400 mx-auto mb-4" />
-            <p className="text-gray-600 mb-4">No assignments created yet</p>
-            <button
-              onClick={() => setShowCreateModal(true)}
-              className="inline-flex items-center space-x-2 bg-indigo-600 text-white px-6 py-3 rounded-lg font-medium hover:bg-indigo-700"
-            >
-              <Plus className="w-5 h-5" />
-              <span>Create Your First Assignment</span>
-            </button>
-          </div>
+          <ScrollFadeIn direction="up" duration={700} delay={200}>
+            <div className="text-center py-12 bg-white rounded-xl border border-gray-200">
+              <BookOpen className="w-16 h-16 text-gray-400 mx-auto mb-4" />
+              <p className="text-gray-600 mb-4">No assignments created yet</p>
+              <button
+                onClick={() => setShowCreateModal(true)}
+                className="inline-flex items-center space-x-2 bg-indigo-600 text-white px-6 py-3 rounded-lg font-medium hover:bg-indigo-700"
+              >
+                <Plus className="w-5 h-5" />
+                <span>Create Your First Assignment</span>
+              </button>
+            </div>
+          </ScrollFadeIn>
         )}
       </div>
 

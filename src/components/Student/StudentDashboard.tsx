@@ -4,6 +4,7 @@ import { useApp } from '../../context/AppContext';
 import Navigation from '../Navigationbar/Navigation';
 import StudentAssignmentCard from './StudentAssingmentCard';
 import InteractiveBg from '../../animations/Interactivebg';
+import ScrollFadeIn from '../../animations/ScrollFadeIn';
 import { gsap } from 'gsap';
 
 
@@ -261,47 +262,60 @@ const StudentDashboard = () => {
       
      
       <div className="bento-section max-w-screen mx-auto px-4 sm:px-6 lg:px-8 py-8">
-        <div className="mb-8 ">
-          <h2 className="text-2xl font-bold text-white mb-2 ">My Assignments</h2>
-          <p className="text-white">Track your assignment submissions and deadlines</p>
-        </div>
-        <div className="card card--border-glow rounded-xl shadow-sm border border-gray-200 p-6 mb-8 relative transition-all duration-300 ease-in-out" style={{color: 'black', opacity: '0.8'}}>
-          <div className="flex flex-row items-center justify-between mb-4">
-            <h3 className="text-lg font-semibold text-white">Overall Progress</h3>
-            <span className="text-2xl font-bold text-white">{Math.round(progressPercentage)}%</span>
+        <ScrollFadeIn direction="up" duration={600} delay={100}>
+          <div className="mb-8 ">
+            <h2 className="text-2xl font-bold text-white mb-2 ">My Assignments</h2>
+            <p className="text-white">Track your assignment submissions and deadlines</p>
           </div>
-          <div className="w-full bg-gray-200 rounded-full h-4 overflow-hidden">
-            <div
-              className="bg-indigo-600 h-4 rounded-full transition-all duration-500"
-              style={{ width: `${progressPercentage}%` }}
-            />
+        </ScrollFadeIn>
+        <ScrollFadeIn direction="up" duration={700} delay={200}>
+          <div className="card card--border-glow rounded-xl shadow-sm border border-gray-200 p-6 mb-8 relative transition-all duration-300 ease-in-out" style={{color: 'black', opacity: '0.8'}}>
+            <div className="flex flex-row items-center justify-between mb-4">
+              <h3 className="text-lg font-semibold text-white">Overall Progress</h3>
+              <span className="text-2xl font-bold text-white">{Math.round(progressPercentage)}%</span>
+            </div>
+            <div className="w-full bg-gray-200 rounded-full h-4 overflow-hidden">
+              <div
+                className="bg-indigo-600 h-4 rounded-full transition-all duration-500"
+                style={{ width: `${progressPercentage}%` }}
+              />
+            </div>
+            <div className="flex items-center justify-between mt-3 text-sm text-white">
+              <span>{submittedCount} of {totalCount} submitted</span>
+              <span>{totalCount - submittedCount} pending</span>
+            </div>
           </div>
-          <div className="flex items-center justify-between mt-3 text-sm text-white">
-            <span>{submittedCount} of {totalCount} submitted</span>
-            <span>{totalCount - submittedCount} pending</span>
-          </div>
-        </div>
+        </ScrollFadeIn>
         <div ref={gridRef} className="grid grid-cols-1 md:grid-cols-2 gap-5 ">
-          {assignments.map((assignment: any) => {
+          {assignments.map((assignment: any, index: number) => {
             const submission = studentSubmissions.find((s: any) => s.assignmentId === assignment.id);
             return (
-              <div
+              <ScrollFadeIn
                 key={assignment.id}
-                className="card card--border-glow rounded-xl relative overflow-hidden transition-all duration-300 ease-in-out transition-transform duration-300 hover:scale-102"
+                direction="up"
+                duration={700}
+                delay={300 + index * 100}
+                distance={40}
               >
-                <StudentAssignmentCard
-                  assignment={assignment}
-                  submission={submission}
-                />
-              </div>
+                <div
+                  className="card card--border-glow rounded-xl relative overflow-hidden transition-all duration-300 ease-in-out transition-transform duration-300 hover:scale-102"
+                >
+                  <StudentAssignmentCard
+                    assignment={assignment}
+                    submission={submission}
+                  />
+                </div>
+              </ScrollFadeIn>
             );
           })}
         </div>
         {assignments.length === 0 && (
-          <div className="text-center py-12">
-            <BookOpen className="w-16 h-16 text-gray-400 mx-auto mb-4" />
-            <p className="text-gray-600">No assignments available yet</p>
-          </div>
+          <ScrollFadeIn direction="up" duration={700} delay={300}>
+            <div className="text-center py-12">
+              <BookOpen className="w-16 h-16 text-gray-400 mx-auto mb-4" />
+              <p className="text-gray-600">No assignments available yet</p>
+            </div>
+          </ScrollFadeIn>
         )}
       </div>
 

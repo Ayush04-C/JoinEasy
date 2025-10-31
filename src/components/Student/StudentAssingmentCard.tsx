@@ -91,7 +91,7 @@ const StudentAssignmentCard = ({ assignment, submission }) => {
               </button>
               <button
                 onClick={() => setShowConfirmation(false)}
-                className="flex-1 bg-black text-black py-2 rounded-lg font-medium hover:bg-gray-300"
+                className="flex-1 bg-black text-white py-2 rounded-lg font-medium hover:bg-gray-300"
                 >
                 Cancel
               </button>
