@@ -11,6 +11,7 @@ A unified platform for professors and students — where students can seamlessly
 
 <br>
 
+# Flow Diagram
 <img width="1722" height="800" alt="image" src="https://github.com/user-attachments/assets/07656216-b42d-481d-9812-2e7ec3cfda33" />
 
 <br>
