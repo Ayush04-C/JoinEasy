@@ -69,13 +69,14 @@ A unified platform for professors and students — where students can seamlessly
 # Preview
 
 - Login Page
-&nbsp;&nbsp;&nbsp;&nbsp;<img width="1919" height="868" alt="image" src="https://github.com/user-attachments/assets/9ab91f84-dcbb-4607-b242-0ee16842e1a6" />
+&nbsp;&nbsp;&nbsp;&nbsp;<img width="1919" height="859" alt="image" src="https://github.com/user-attachments/assets/7020dbd3-a449-491e-8ae9-49d4f930bf78" />
 <br>
 
 - Student Dashboard
-&nbsp;<img width="1919" height="873" alt="image" src="https://github.com/user-attachments/assets/4ba981f0-a4db-4099-800b-e8c35e651d0d" />
+&nbsp;<img width="1918" height="868" alt="image" src="https://github.com/user-attachments/assets/27399e51-3b80-4430-a03b-73f2d79aecc0" />
 <br>
 
-- Professors DashBoard
-&nbsp;<img width="1919" height="870" alt="image" src="https://github.com/user-attachments/assets/c9bea411-6fe3-4126-8e5e-18ad0a60c41d" />
+- Professor's DashBoard
+&nbsp;<img width="1918" height="871" alt="image" src="https://github.com/user-attachments/assets/25893b59-39f6-4dcd-9d5d-26cc6868d2db" />
+
 
