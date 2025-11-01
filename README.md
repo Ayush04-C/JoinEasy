@@ -1,70 +1,158 @@
-# Assingment Hub
+# Assignment Hub
 
 A unified platform for professors and students — where students can seamlessly view and submit their assignments, and professors can efficiently track student progress. Designed to simplify and enhance the academic workflow for both students and educators.
 
-# Component Descriptions
-- Login Component (Login.tsx): Handles user authentication with predefined demo credentials for students and professors.
-- App Context (AppContext.tsx): Manages global application state including user authentication, assignment data, and submission tracking using localStorage for persistence.
-- Student Dashboard (StudentDashboard.tsx): Provides students with an overview of their assignments, submission status, and overall progress tracking.
-- Admin Dashboard (AdminDashboard.tsx): Enables professors to create, monitor, and delete assignments along with tracking student submissions.
-- Animation Components: Custom animation utilities that enhance the user interface with interactive visual effects.
+## Project Setup Instructions
 
-<br>
+### Prerequisites
+- Node.js (version 16 or higher)
+- npm or yarn package manager
 
-# Flow Diagram
-<img width="1722" height="800" alt="image" src="https://github.com/user-attachments/assets/07656216-b42d-481d-9812-2e7ec3cfda33" />
+### Installation Steps
 
-<br>
+1. **Clone the repository**
+   ```bash
+   git clone <repository-url>
+   cd joineasy
+   ```
 
+2. **Install dependencies**
+   ```bash
+   npm install
+   # or
+   yarn install
+   ```
 
-# Detailed User Flows
-- Initial Login Process:
-  - Users access the application and are presented with the Login screen
-  - Users enter credentials (demo credentials provided):
-    - Student: alice@student.edu / student123
-    - Professor: emily@prof.edu / admin123
-    - Based on the user role, they are directed to the appropriate dashboard
-&nbsp;
-- Student User Flow:
-  - View all assigned assignments in card format
-  - Track overall progress with visual indicators
-  - See submission status for each assignment
-  - Access assignment details and external links
-&nbsp;
-- Professor/Instructor User Flow:
-  - Create new assignments through a modal form
-  - Monitor student progress across all assignments
-  - View submission statistics and individual student status
-  - Delete assignments with confirmation dialog
+3. **Start the development server**
+   ```bash
+   npm run dev
+   # or
+   yarn dev
+   ```
 
-<br>
+4. **Build for production**
+   ```bash
+   npm run build
+   # or
+   yarn build
+   ```
 
-# Technical Stack Documentation
+5. **Preview the production build**
+   ```bash
+   npm run preview
+   # or
+   yarn preview
+   ```
 
-- Core Technologies
+### Demo Credentials
+- **Student Access**: 
+  - Email: `alice@student.edu`
+  - Password: `student123`
+  
+- **Professor Access**:
+  - Email: `emily@prof.edu`
+  - Password: `admin123`
+
+## Folder Structure Overview
+
+```
+joineasy/
+├── public/                 # Static assets
+├── src/                    # Source code
+│   ├── animations/         # Custom animation components
+│   ├── components/         # React components organized by user role
+│   │   ├── Admin/          # Professor/Instructor components
+│   │   ├── Login/          # Authentication components
+│   │   ├── Navigationbar/  # Navigation components
+│   │   └── Student/        # Student components
+│   ├── context/            # Application state management
+│   ├── App.css             # Global styles
+│   ├── App.tsx             # Main application component and routing
+│   ├── index.css           # Base styles and Tailwind directives
+│   └── main.tsx            # Application entry point
+├── index.html              # HTML template
+├── package.json            # Dependencies and scripts
+├── tsconfig.json           # TypeScript configuration
+└── vite.config.ts          # Vite build configuration
+```
+
+## Component Structure and Design Decisions
+
+### Architecture Overview
+
+The application follows a role-based architecture with a clear separation of concerns:
+
+1. **Authentication Layer**
+   - Centralized login component that handles user authentication
+   - Role-based routing that directs users to appropriate dashboards
+
+2. **State Management**
+   - React Context API for global state management
+   - localStorage for data persistence across sessions
+   - Mock data initialization for demonstration purposes
+
+3. **Component Organization**
+   - Role-specific component folders (Admin, Student, Login)
+   - Reusable UI components (Navigation, Animation utilities)
+   - Modular design for easy maintenance and scalability
+
+### Key Design Decisions
+
+1. **Role-Based Access Control**
+   - Implementation of conditional rendering based on user roles
+   - Separate dashboards for students and professors with tailored functionality
+
+2. **Data Persistence**
+   - localStorage implementation for mock data persistence
+   - Automatic cleanup of orphaned submissions
+   - Data initialization with sample assignments and users
+
+3. **UI/UX Enhancements**
+   - Custom animation components for interactive user experience
+   - Scroll-based animations for smooth content transitions
+   - Interactive background elements for visual appeal
+   - Responsive design for cross-device compatibility
+
+4. **Component Design Patterns**
+   - Reusable card components for consistent data display
+   - Modal patterns for creation flows
+   - Confirmation dialogs for destructive actions
+   - Progress visualization components
+
+### Technical Stack
+
+- **Core Technologies**
   - React 19.1.1: Frontend library for building user interfaces
   - TypeScript ~5.9.3: Typed superset of JavaScript for enhanced development experience
   - Vite 7.1.7: Fast build tool and development server
-- UI Libraries and Styling
+
+- **UI Libraries and Styling**
   - Tailwind CSS 4.1.16: Utility-first CSS framework for rapid UI development
   - Lucide React 0.548.0: Icon library with consistent, scalable vector icons
   - GSAP 3.13.0: Animation library for creating high-performance animations
-- State Management
+
+- **State Management**
   - React Context API: Built-in state management solution for sharing data across components
   - LocalStorage: Client-side data persistence for mock assignment system
-- Development Tools
+
+- **Development Tools**
   - ESLint 9.36.0: Code quality and consistency enforcement
   - PostCSS 8.5.6: CSS processing and transformation tool
   - Autoprefixer 10.4.21: Vendor prefixing for cross-browser compatibility
-- Build and Deployment
-  - Vite: Fast build tool with Hot Module Replacement (HMR)
-  - TypeScript Compiler: Type checking and transpilation to JavaScript
-- Key Features
-  - Responsive Design: Mobile-friendly interface using Tailwind's responsive utilities
-  - Interactive Animations: Custom GSAP-based animations for enhanced UX
-  - Role-Based Access Control: Different views and permissions for students vs. professors
-  - Persistent Data Storage: Mock data system using localStorage
-  - Visual Progress Tracking: Progress bars and statistics visualization
+
+### Key Features
+
+- **Responsive Design**: Mobile-friendly interface using Tailwind's responsive utilities
+- **Interactive Animations**: Custom GSAP-based animations for enhanced UX
+- **Role-Based Access Control**: Different views and permissions for students vs. professors
+- **Persistent Data Storage**: Mock data system using localStorage
+- **Visual Progress Tracking**: Progress bars and statistics visualization
+- **Assignment Management**: Create, view, and delete assignments (professors only)
+- **Submission Tracking**: Monitor student submissions and progress (professors only)
+
+
+
+
 
 
 # Preview
