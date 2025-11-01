@@ -53,7 +53,7 @@ const AdminDashboard = () => {
   const students = data.users.filter((u: any) => u.role === 'student') as Student[];
   
   return (
-    <div className="fixed top-16 left-0 w-screen h-[calc(100vh-4rem)] overflow-y-auto">
+    <div className="fixed top-14 sm:top-20 left-0 w-screen h-[calc(100vh-3.5rem)] sm:h-[calc(100vh-5rem)] overflow-y-auto pb-8">
       <InteractiveBg />
       <Navigation />
       

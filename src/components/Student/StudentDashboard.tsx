@@ -204,7 +204,7 @@ const StudentDashboard = () => {
 
   return (
 
-    <div className="fixed top-16 left-0 w-screen h-[calc(100vh-4rem)] overflow-y-auto">
+    <div className="fixed top-14 sm:top-20 left-0 w-screen h-[calc(100vh-3.5rem)] sm:h-[calc(100vh-5rem)] overflow-y-auto pb-8">
       <style>
         {`
           .bento-section {
