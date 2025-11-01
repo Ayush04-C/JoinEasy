@@ -75,6 +75,9 @@ joineasy/
 ├── tsconfig.json           # TypeScript configuration
 └── vite.config.ts          # Vite build configuration
 ```
+# Flow Diagram
+<img width="1722" height="800" alt="workflow" src="https://github.com/user-attachments/assets/bb1babfc-7a94-4929-9af8-db5ea2a72cb1" />
+
 
 ## Component Structure and Design Decisions
 
