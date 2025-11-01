@@ -55,13 +55,18 @@ const CreateAssignmentModal = ({ onClose }: { onClose: (success: boolean) => voi
 
           <div>
             <label className="block text-sm font-medium text-gray-700 mb-2">Due Date</label>
-            <input
-              type="date"
-              value={formData.dueDate}
-              onChange={(e) => setFormData({ ...formData, dueDate: e.target.value })}
-              className="w-full px-4 py-2 border text-black border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500"
-              required
-            />
+            <div className="relative">
+              <input
+                type="date"
+                value={formData.dueDate}
+                onChange={(e) => setFormData({ ...formData, dueDate: e.target.value })}
+                onClick={(e) => e.currentTarget.showPicker()}
+                className="w-full px-4 py-2 border text-black border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 cursor-pointer hover:border-indigo-400 transition-colors [&::-webkit-calendar-picker-indicator]:cursor-pointer [&::-webkit-calendar-picker-indicator]:opacity-100"
+                style={{ colorScheme: 'light' }}
+                min={new Date().toISOString().split('T')[0]}
+                required
+              />
+            </div>
           </div>
 
           <div>

@@ -68,12 +68,25 @@ const initializeMockData = () => {
 
 const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const [data, setData] = useState<any>(initializeMockData());
-  const [currentUser, setCurrentUser] = useState<any>(null);
+  const [currentUser, setCurrentUser] = useState<any>(() => {
+    // Initialize currentUser from localStorage
+    const savedUser = localStorage.getItem('currentUser');
+    return savedUser ? JSON.parse(savedUser) : null;
+  });
   const [showMobileMenu, setShowMobileMenu] = useState<boolean>(false);
 
   useEffect(() => {
     localStorage.setItem('assignmentSystemData', JSON.stringify(data));
   }, [data]);
+
+  // Persist currentUser to localStorage
+  useEffect(() => {
+    if (currentUser) {
+      localStorage.setItem('currentUser', JSON.stringify(currentUser));
+    } else {
+      localStorage.removeItem('currentUser');
+    }
+  }, [currentUser]);
 
   // Clean up orphaned submissions on mount
   useEffect(() => {
