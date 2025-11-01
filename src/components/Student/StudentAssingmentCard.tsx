@@ -3,7 +3,20 @@ import { CheckCircle, Clock, ExternalLink, XCircle } from 'lucide-react';
 import { useApp } from '../../context/AppContext';
 import FadeContent from '../../animations/FadeContent'
 
-const StudentAssignmentCard = ({ assignment, submission }) => {
+interface Assignment {
+  id: string;
+  title: string;
+  description: string;
+  dueDate: string;
+  driveLink?: string;
+}
+
+interface Submission {
+  submitted: boolean;
+  submittedAt?: string;
+}
+
+const StudentAssignmentCard = ({ assignment, submission }: { assignment: Assignment; submission?: Submission }) => {
   const { updateSubmission, currentUser } = useApp();
   const [showConfirmation, setShowConfirmation] = useState(false);
   const [showSuccess, setShowSuccess] = useState(false);
@@ -61,7 +74,7 @@ const StudentAssignmentCard = ({ assignment, submission }) => {
           {isSubmitted ? (
             <div className="flex items-center space-x-2 text-green-600">
               <CheckCircle className="w-5 h-5" />
-              <span className="text-sm font-medium">Submitted on {submission.submittedAt}</span>
+              <span className="text-sm font-medium">Submitted on {submission?.submittedAt}</span>
             </div>
           ) : (
             <button

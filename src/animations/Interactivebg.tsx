@@ -1,8 +1,20 @@
 "use client";
 import { useState, useEffect, useMemo } from "react";
 
+interface Icon {
+  id: number;
+  svg: string;
+  x: number;
+  y: number;
+  size: number;
+  opacity: number;
+  animationDuration: number;
+  animationDelay: number;
+  depth: number;
+}
+
 export default function InteractiveBg() {
-  const [icons, setIcons] = useState([]);
+  const [icons, setIcons] = useState<Icon[]>([]);
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
   const iconCount = 30;
 
@@ -51,7 +63,7 @@ export default function InteractiveBg() {
   }, [iconSvgs]);
 
   useEffect(() => {
-    const handleMouseMove = (e) => {
+    const handleMouseMove = (e: MouseEvent) => {
       setMousePosition({ x: e.clientX, y: e.clientY });
     };
     window.addEventListener("mousemove", handleMouseMove);
@@ -124,6 +136,16 @@ function Icon({
   animationDelay,
   depth,
   mousePosition,
+}: {
+  svg: string;
+  x: number;
+  y: number;
+  size: number;
+  opacity: number;
+  animationDuration: number;
+  animationDelay: number;
+  depth: number;
+  mousePosition: { x: number; y: number };
 }) {
   const moveX = useMemo(() => {
     const centerX = window.innerWidth / 2;
@@ -155,8 +177,9 @@ function Icon({
         dangerouslySetInnerHTML={{ __html: svg }}
         ref={(el) => {
           if (el && el.firstChild) {
-            el.firstChild.style.width = `${size}px`;
-            el.firstChild.style.height = `${size}px`;
+            const child = el.firstChild as HTMLElement;
+            child.style.width = `${size}px`;
+            child.style.height = `${size}px`;
           }
         }}
       />

@@ -166,11 +166,11 @@ const GlobalSpotlight: React.FC<{
     };
     
     const section = gridRef.current.closest('.bento-section');
-    section?.addEventListener('mousemove', handleMouseMove);
+    section?.addEventListener('mousemove', handleMouseMove as EventListener);
     section?.addEventListener('mouseleave', handleMouseLeave);
 
     return () => {
-      section?.removeEventListener('mousemove', handleMouseMove);
+      section?.removeEventListener('mousemove', handleMouseMove as EventListener);
       section?.removeEventListener('mouseleave', handleMouseLeave);
       spotlightRef.current?.parentNode?.removeChild(spotlightRef.current);
     };

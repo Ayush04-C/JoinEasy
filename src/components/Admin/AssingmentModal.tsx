@@ -49,7 +49,7 @@ const CreateAssignmentModal = ({ onClose }: { onClose: (success: boolean) => voi
               value={formData.description}
               onChange={(e) => setFormData({ ...formData, description: e.target.value })}
               className="w-full px-4 py-2 border text-black border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500"
-              rows="3"
+              rows={3}
             />
           </div>
 
