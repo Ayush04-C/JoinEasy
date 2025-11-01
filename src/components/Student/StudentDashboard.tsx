@@ -295,7 +295,7 @@ const StudentDashboard = () => {
                 threshold={0.1}
               >
                 <div
-                  className="card card--border-glow rounded-xl relative overflow-hidden transition-all duration-300 ease-in-out transition-transform duration-300 hover:scale-102"
+                  className="card card--border-glow border border-gray-300 rounded-xl relative overflow-hidden transition-all duration-300 ease-in-out transition-transform duration-300 hover:scale-102"
                 >
                   <StudentAssignmentCard
                     assignment={assignment}
